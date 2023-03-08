@@ -48,7 +48,7 @@ python main.py
 
 ## License
 
-Audit IDMS Scrapper is licensed under the MIT License. See  [LICENSE](https://www.bing.com/LICENSE)  for more details.
+Audit IDMS Scrapper is licensed under the MIT License. See  [LICENSE](https://github.com/Glitchr/audit_idms_vin_validator/blob/main/LICENSE) for more details.
 
 ## Contributing
 
