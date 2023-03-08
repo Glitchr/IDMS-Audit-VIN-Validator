@@ -21,7 +21,10 @@ if __name__ == '__main__':
     inventory_page.click_inventory_button()
     inventory_page.change_status()
 
-    with open('data/title_tec_temp_tags.csv', 'r') as read_file, open('data/title_tec_temp_tags_updated.csv', 'w', newline='') as write_file:
+    # Open the read_file with all the info 
+    # then write it into write_file once checked on IDMS
+    with open('data/title_tec_temp_tags.csv', 'r') as read_file, \
+    open('data/title_tec_temp_tags_updated.csv', 'w', newline='') as write_file:
         reader = csv.reader(read_file)
         writer = csv.writer(write_file)
         header = next(reader)
