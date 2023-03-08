@@ -67,3 +67,4 @@ class LoginPage:
         auth_code = input('Please enter the 2FA code: ')
         self.enter_verification_code(auth_code)
         self.verify_2fa_code()
+        print('2FA code verified')

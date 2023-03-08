@@ -2,6 +2,7 @@ import csv
 
 from selenium import webdriver
 from decouple import config
+import pandas as pd
 
 from login_page import LoginPage
 from inventory_page import InventoryPage
@@ -23,28 +24,29 @@ if __name__ == '__main__':
 
     # Open the read_file with all the info 
     # then write it into write_file once checked on IDMS
-    with open('data/title_tec_temp_tags.csv', 'r') as read_file, \
-    open('data/title_tec_temp_tags_updated.csv', 'w', newline='') as write_file:
-        reader = csv.reader(read_file)
+    read_csv = config('READ')
+    write_csv = config('WRITE')
+    df = pd.read_csv(read_csv)  # Read the CSV file into a dataframe
+    row_count = len(df)  # Get the total number of rows
+    with open(write_csv, 'w', newline='') as write_file:
         writer = csv.writer(write_file)
-        header = next(reader)
+        header = df.columns  # Get the column names from the dataframe
         writer.writerow(header)
 
-        count = 1
-        for row in reader:
-            vin = row[1]
+        for index, row in df.iterrows():  # Iterate over each row in the dataframe
+            index += 1
+            vin = row['VIN']
             inventory_page.enter_vin(vin)
             check_vin = inventory_page.check_vin_on_idms()
 
-            print(f'\n({count}/1571) Vehicle S# {vin[-6:]}:')
+            print(f'\n({index}/{row_count}) Vehicle S# {vin[-6:]}:')
 
             if check_vin:
-                row[6] = 'x'
+                row['IDMS'] = 'x'
                 print('\tAppears in IDMS')
             else:
                 print('\tDoes not appear in IDMS')
 
-            count += 1
             writer.writerow(row)
 
     print('\nFinished script')
