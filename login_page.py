@@ -47,9 +47,11 @@ class LoginPage:
         self.verify_2fa_button.click()
 
     def login(self, password):
+        print('Logging into IDMS...')
         self.enter_password(password)
         self.click_next()
         self.send_2fa_code()
         auth_code = input('Please enter the 2FA code: ')
         self.enter_verification_code(auth_code)
         self.verify_2fa_code()
+        

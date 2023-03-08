@@ -8,13 +8,12 @@ from inventory_page import InventoryPage
 
 
 if __name__ == '__main__':
-    username = config('USER')
     password = config('PASSWORD')
     url = config('URL')
     driver = webdriver.Firefox()
     driver.maximize_window()
     driver.get(url)
-    
+
     login_page = LoginPage(driver)
     login_page.login(password)
 
@@ -28,13 +27,22 @@ if __name__ == '__main__':
         header = next(reader)
         writer.writerow(header)
 
+        count = 1
         for row in reader:
             vin = row[1]
             inventory_page.enter_vin(vin)
-            response_message = inventory_page.get_response()
+            check_vin = inventory_page.check_vin_on_idms()
 
-            if response_message:
+            print(f'\n({count}/1571) Vehicle S# {vin[-6:]}:')
+
+            if check_vin:
                 row[6] = 'x'
+                print('\tAppears in IDMS')
+            else:
+                print('\tDoes not appear in IDMS')
+
+            count += 1
             writer.writerow(row)
-    
+
+    print('\nFinished script')
     driver.quit()
