@@ -32,7 +32,22 @@ class InventoryPage:
     def waitout_loading_screen(self):
         """Wait for the loading screen to disappear"""
         return WebDriverWait(self.driver, 10).until(
-            EC.invisibility_of_element_located((By.CLASS_NAME, "spinnerContent")))  
+            EC.invisibility_of_element_located((By.CLASS_NAME, "spinnerContent")))
+    
+    @property
+    def get_year(self):
+        return WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="row_detail"]/td[2]/span')))
+    
+    @property
+    def get_make(self):
+        return WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="row_detail"]/td[3]/span')))
+    
+    @property
+    def get_model(self):
+        return WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="row_detail"]/td[4]/span')))
 
     def click_inventory_button(self):
         """Click the selected inventory button to go the inventory"""
@@ -65,8 +80,8 @@ class InventoryPage:
         try: 
             self.waitout_loading_screen
             WebDriverWait(self.driver, 2).until(
-                EC.visibility_of_element_located((By.XPATH, "//*[@id='_InventoryLookupFormElement']/div[2]/div[4]")))
+                EC.visibility_of_element_located((By.XPATH, "//*[@id='_InventoryLookupFormElement']/div[2]/div[4]")))            
         except TimeoutException:
                 return False
-        else:
-            return True
+        else:            
+            return True, self.get_year, self.get_make, self.get_model
