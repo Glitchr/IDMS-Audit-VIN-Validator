@@ -1,12 +1,12 @@
 
 
-# Audit IDMS Vin Validator
+# IDMS Audit VIN Validator
 
-Audit IDMS Vin Validator is a Python script that checks VINs from a CSV file against the IDMS website and generates a report of it exists or not in the inventory.
+This is a Python script that checks VINs from a CSV file against the IDMS website and generates a report of it exists or not in the inventory.
 
 ## Installation
 
-To install Audit IDMS Vin Validator, you need Python 3.6 or higher and the following packages:
+To install the IDMS Audit VIN Validatorr, you need Python 3.6 or higher and the following packages:
 
 - Selenium
 - Pandas
@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-To use Audit IDMS Vin Validator, you need to have an `.env` file in the same directory as the script. The `.env` file should contain the following variables:
+To use IDMS Audit VIN Validator, you need to have an `.env` file in the same directory as the script. The `.env` file should contain the following variables:
 
 - `PASSWORD`: Your IDMS password
 - `USER`: Your IDMS username
@@ -48,11 +48,11 @@ python main.py
 
 ## License
 
-Audit IDMS Scrapper is licensed under the MIT License. See  [LICENSE](https://www.bing.com/LICENSE)  for more details.
+IDMS Audit VIN Validator is licensed under the MIT License. See  [LICENSE](https://github.com/Glitchr/audit_idms_vin_validator/blob/main/LICENSE) for more details.
 
 ## Contributing
 
-Audit IDMS Scrapper is an open source project and contributions are welcome. If you want to contribute, please follow these steps:
+IDMS Audit VIN Validator is an open source project and contributions are welcome. If you want to contribute, please follow these steps:
 
 1.  Fork this repository on GitHub.
 2.  Clone your forked repository on your local machine.
